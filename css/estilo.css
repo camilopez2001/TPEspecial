@@ -1,0 +1,32 @@
+.nav-bk2{
+ 
+    background: #23074d; 
+     
+    background: -webkit-linear-gradient(to right, #cc5333, #23074d); 
+     
+    background: linear-gradient(to right, #cc5333, #23074d);
+     
+     
+}
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.9em;
+    
+}
+header{
+  text-align: center;
+}
+h1{
+    color: rgb(45, 33, 75);
+    text-decoration-line: underline;
+    text-align: center;
+  }
+  
+h3{
+    color: rgb(69, 38, 102);
+    text-align: center;
+  }
+h5{
+    color: rgb(33, 60, 75);
+    text-decoration-line: underline;
+  }
