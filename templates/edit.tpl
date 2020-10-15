@@ -33,7 +33,9 @@
                         <label for="opciones">Genero
                             <select id="opciones" name="input_genre" >
                             {foreach from=$genre item=gen}
-                                <!--if equals idgame idgenre = select -->
+                                {if $game->id_genre eq $gen->id}
+                                <option value="{$gen->id}" selected="selected" >{$gen->name}</option>
+                                {/if}
                                 <option value="{$gen->id}">{$gen->name}</option>
                             {/foreach}
                             </select>

@@ -29,7 +29,7 @@ class View{
         $smarty->assign('titulo_game', $this->titulo_game);
         $smarty->assign('genre', $genre);
         $smarty->assign('games', $games);
-       $smarty->display('templates/showGames.tpl'); // muestro el template 
+       $smarty->display('templates/showGames.tpl'); 
 
     }
     function comunity(){
@@ -83,9 +83,6 @@ class View{
 
     function ShowUserLoc(){
         header("Location: ".BASE_URL.'user');
-    }
-    function ShowHomeLoc(){
-        header("Location: ".BASE_URL.'Home');
     }
 
 }

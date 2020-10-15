@@ -6,9 +6,9 @@
     <div class="container">
 
         <ul class="list-group">
-        {if $games == null} 
+        {if $games eq null} 
          <h4>¡Proximamente juegos de esta categoria!</h4>
-         {/if}
+        {/if}
             {foreach from=$games item=game}
                 
             <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-dark"><a href="detalleJuego/{$game->id}">{$game->title}</a></li>    

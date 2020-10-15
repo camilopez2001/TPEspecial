@@ -7,10 +7,10 @@
 
             {foreach from=$games item=game}
                 {if $game->precio le 0}
-                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >Gratis</span> <button type="button" class="btn btn-outline-danger"><a href="delete/{$game->id}">Borrar</a></button>
+                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >Gratis</span> <button type="button"  class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
                     <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></button></li>
                 {else}
-                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >${$game->precio}</span> <button type="button" class="btn btn-outline-danger"><a href="delete/{$game->id}">Borrar</a></button>
+                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >${$game->precio}</span> <button type="button"  class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
                     <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></li>    
                 {/if}
             {/foreach}
@@ -63,7 +63,7 @@
         <ul class="list-group">
 
             {foreach from=$genre item=gen}
-                <li class="list-group-item " ><a href="generoEspecifico/{$gen->id}">{$gen->name}</a><button type="button" class="btn btn-outline-danger"><a href="deleteGenre/{$gen->id}">Borrar</a></button>
+                <li class="list-group-item " ><a href="generoEspecifico/{$gen->id}">{$gen->name}</a><button type="button"  class="btn btn-danger"><a href="deleteGenre/{$gen->id}">Borrar</a></button>
                     <button type="button" class="btn btn-warning"><a href="editGenre/{$gen->id}">Editar</a></button></li>    
             {/foreach}
           
@@ -86,4 +86,5 @@
     </div>
 
     <button type="button" class="btn btn-outline-danger"><a href="Logout">Cerrar Sesion</a></button>
+ 
 {include file="footer.tpl"}

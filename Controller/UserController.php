@@ -21,10 +21,9 @@ class UserController{
     function VerificarUser(){
         $email = $_POST["input_user"];
         $pass = $_POST["input_pass"];
-        if(isset($email)){ //si hay algo en el input_user
+        if(isset($email)){ 
             $usuarioFromDB = $this->model->GetUsuario($email);
             if(isset($usuarioFromDB) && $usuarioFromDB ){ 
-                //si la bbdd me trae algo, existe usuario  Y no falso
                 if (password_verify($pass, $usuarioFromDB->password)){
                     session_start();
                     $_SESSION["EMAIL"] = $usuarioFromDB->email;

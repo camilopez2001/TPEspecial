@@ -1,6 +1,5 @@
 <?php
 
-//require_once "./GenreModel.php";
 class GameModel{
 
     private $db;

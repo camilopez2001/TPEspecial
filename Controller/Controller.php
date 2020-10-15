@@ -51,7 +51,6 @@ class Controller{
     
 
     function generoEspecifico($params = null){
-        //Traer todos los jugos que tengan el id que me pasan por parametro
         $genre_id = $params[':ID'];
         $juegosGenero = $this->model->generoEspecifico($genre_id);
         $genre =  $this->modelGenre->GetGenre( $genre_id );
@@ -76,19 +75,18 @@ class Controller{
         $games = $this->model->GetGames();
         $genres = $this->modelGenre->GetGenres();
         $this->view->ShowAllAdmin($games, $genres);
-    
     }
 
 
 
     function InsertGenre(){
         $this->modelGenre->InsertGenre($_POST['input_name'],$_POST['input_description']);
-        header("Location: ".BASE_URL.'user');
+        $this->view->ShowUserLoc();
     }
     function DeleteGenre($params = null){
         $genre_id = $params[':ID'];
         $this->modelGenre->DeleteGenre($genre_id);
-        header("Location: ".BASE_URL.'user');
+        $this->view->ShowUserLoc();
     }
     function EditGenre($params = null){
         $genre_id = $params[':ID'];
@@ -97,7 +95,7 @@ class Controller{
     }
     function ModificarGenre(){
         $this->modelGenre->EditGenre($_POST['genre_id'],$_POST['input_name'],$_POST['input_description']);
-        header("Location: ".BASE_URL.'user');
+        $this->view->ShowUserLoc();
     }
 
 
@@ -105,12 +103,12 @@ class Controller{
 
     function InsertGame(){
         $this->model->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
-        header("Location: ".BASE_URL.'user');
+        $this->view->ShowUserLoc();
     }
     function DeleteGame($params = null){
         $game_id = $params[':ID'];
         $this->model->DeleteGame($game_id);
-        header("Location: ".BASE_URL.'user');
+        $this->view->ShowUserLoc();
     }
     function EditGame($params = null){
         $game_id = $params[':ID'];
@@ -120,7 +118,7 @@ class Controller{
     }
     function Modificar(){
         $this->model->EditGame($_POST['input_id'],$_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
-        header("Location: ".BASE_URL.'user');
+        $this->view->ShowUserLoc();
     }
     
 }
