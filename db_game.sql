@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2020 a las 08:51:53
+-- Tiempo de generación: 15-10-2020 a las 06:37:32
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.33
 
@@ -41,8 +41,12 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`id`, `title`, `precio`, `version`, `memoria`, `id_genre`) VALUES
-(63, 'asdasd', 22, 'alfa', 22, 3),
-(67, 'Assasssins creed', 2, 'alfa', 2, 4);
+(82, 'Age of Empires II: The Age of Kings', 22, 'alfa', 300, 13),
+(83, 'Atom Zombie Smasher', 0, 'alfa', 234, 11),
+(84, 'Unholy', 53, 'alfa', 405, 11),
+(85, 'Five Nights at Freddy\'s', 34, 'alfa', 514, 11),
+(86, 'Minecraft ', 63, 'gold', 255, 12),
+(87, 'Los Sims 2', 0, 'alfa', 435, 12);
 
 -- --------------------------------------------------------
 
@@ -61,8 +65,10 @@ CREATE TABLE `genre` (
 --
 
 INSERT INTO `genre` (`id`, `name`, `description`) VALUES
-(3, 'Acción-aventura', 'también llamado videoaventura, es un videojuego que combina elementos del género aventura con elementos del género acción. Acción-aventura es un género híbrido, por lo tanto la definición es muy amplia, logrando quizás que sea el género de videojuegos más'),
-(4, 'Terror', 'asdfsgarg');
+(10, 'Aventura', 'Los videojuegos de aventura son un género de videojuegos, caracterizados por la investigación, exploración, la solución de rompecabezas, la interacción con personajes del videojuego, y un enfoque en el relato en vez de desafíos basados en reflejos.'),
+(11, 'Survival horror', 'es un género de videojuegos inspirado en la ficción de terror que se centra en la supervivencia del personaje mientras el videojuego intenta asustar a los jugadores con gráficos y personajes de terror, o con un ambiente aterrador.'),
+(12, 'Simulación', 'Los videojuegos de simulación son videojuegos que intentan recrear situaciones de la vida real. Los videojuegos de simulación reproducen sensaciones que en realidad no están sucediendo.'),
+(13, 'Estrategia', 'Son videojuegos que requieren que el jugador ponga en práctica sus habilidades de planeamiento y pensamiento para maniobrar, gestionando recursos de diverso tipo para conseguir la victoria.');
 
 -- --------------------------------------------------------
 
@@ -72,10 +78,17 @@ INSERT INTO `genre` (`id`, `name`, `description`) VALUES
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
-  `name` varchar(500) NOT NULL,
-  `user` varchar(200) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
+(5, 'camilopez8501@gmail.com', '$2y$10$IuLcq8idfHlfvFWN3zpg1OfmAUWJ/7iVQcgIyy96Ed1YwWRoGSw4a'),
+(7, 'fran_tandil@hotmail.com', '$2y$10$89ONul/O8iaXgBL7KsuBMew3Yntva.b10jbcaiuv7zw8BJUE2X8Qq');
 
 --
 -- Índices para tablas volcadas
@@ -108,19 +121,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `game`
 --
 ALTER TABLE `game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
