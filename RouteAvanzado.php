@@ -36,12 +36,7 @@
     $r->addRoute("Logout", "GET", "UserController", "Logout");
 
    
-    
   
-  /* $ruter->addRoute("inicio_sesion/", "GET", "UserController", "InicioSesion");
-   $ruter->addRoute("cerrar_sesion/", "GET", "UserController", "CerrarSesion");
-    */
-    
     
   
 
