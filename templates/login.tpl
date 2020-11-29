@@ -10,11 +10,18 @@
             <div class="form-group">
                 <label for="pass">Contraseña</label>
                 <input type="password" class="form-control" id="pass" name="input_pass">
-            </div>    
-             <button type="submit" class="btn btn-primary">Login</button>
-             <p>{$mensaje}</p>
+            </div>
+            <div class="form-group">
+            <button type="submit" class="botonEstilo btnColor2">Login</button>
+            <button type="submit" class="botonEstilo btnColor2"><a href="registrarse">Registrarse</a></button>
+            </div>
+            {if $mensaje}
+                <div class="alert alert-danger" role="alert">{$mensaje}</div>
+            {/if}
              
     </form>
+    
 </div>
+
             
 {include file="footer.tpl"}

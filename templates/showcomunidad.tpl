@@ -2,8 +2,9 @@
 
 
  <h1>{$titulo}</h1>
- <h3>Aqui encontraras todo lo que la comunidad #Sector8 te recomienda y las ultimas novedades!</h3>
-    <div class="container">
+   <div class="container">
+ <h3>¡Aqui encontraras todo lo que la comunidad #Sector8 te recomienda y las ultimas novedades!</h3>
+  
         <h5>SEGA celebrará su 60º aniversario con un Golden Axe cancelado y un crossover de Streets of Rage y Yakuza</h5>
         <p>Pocas compañías en la industria del videojuego pueden presumir de cumplir 60 años. SEGA, que lo hace en 2020, 
         promete celebrarlo por todo lo alto con descuentos, competiciones y, lo más sorprendente, 

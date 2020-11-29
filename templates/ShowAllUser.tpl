@@ -7,7 +7,7 @@
 
             {foreach from=$games item=game}
                 {if $game->precio le 0}
-                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >Gratis</span> <button type="button"  class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
+                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >Gratis</span> <button type="button" class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
                     <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></button></li>
                 {else}
                     <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >${$game->precio}</span> <button type="button"  class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
@@ -17,8 +17,8 @@
           
         </ul>
 </div>
- <div class="container">
-                <form action="insert" method="post">
+<div class="container">
+                <form action="insert" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Titulo</label>
                         <input class="form-control" id="title" name="input_title" aria-describedby="emailHelp">
@@ -52,8 +52,14 @@
                             </select>
                         </label>
                     </div>
+                    {if $admin}
+                        <div>
+                            <label for="image">Inserte imagen</label>
+                            <input type="file" name="input_name" id="imageToUpload">
+                        </div>
+                    {/if}
                     
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="botonEstilo btnColor1">Agregar</button>
                 </form>
     </div>
 
@@ -80,11 +86,16 @@
                         <label for="description">Description</label>
                         <input  class="form-control" id="description" name="input_description">
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                      <div class="form-group">
+                    <button type="submit" class="botonEstilo btnColor1">Agregar</button>
+                    </div>
                 </form>
     </div>
-
-    <button type="button" class="btn btn-outline-danger"><a href="Logout">Cerrar Sesion</a></button>
- 
+<div class="container">
+    <button type="button" class="botonEstilo btnColor3"><a href="Logout">Cerrar Sesion</a></button>
+    {if $admin}
+        <button type="button" class="botonEstilo btnColor4"><a href="listaUsuarios">Lista de usuarios</a></button>
+    {/if}
+   
+</div>
 {include file="footer.tpl"}

@@ -1,83 +1,84 @@
 <?php
 require_once "./libs/smarty/Smarty.class.php";
+require_once "./helpers/auth.helper.php";
+
 class View{
     private $titulo_game; 
     private $titulo_genre; 
-        
-    
+    private $smarty;
+    private $authHelper;
+
+
     function __construct(){
         $this->titulo_game=" Juegos disponibles ";
         $this->titulo_genre=" Géneros ";
+        $this->smarty=new Smarty();
+        $this->authHelper = new AuthHelper();
     }
     
     function ShowHome($games,$genre){
-        $smarty = new Smarty();
-        $smarty->assign('titulo_genre', $this->titulo_genre);
-        $smarty->assign('genre', $genre);
-        $smarty->assign('titulo', "Juegos Gratis");
-        $smarty->assign('games', $games);
-        $smarty->display('templates/ShowHome.tpl'); 
+        $this->smarty->assign('titulo_genre', $this->titulo_genre);
+        $this->smarty->assign('genre', $genre);
+        $this->smarty->assign('titulo', "Juegos Gratis");
+        $this->smarty->assign('games', $games);
+        $this->smarty->display('templates/ShowHome.tpl'); 
     }
     function ShowGenres($genres){
-        $smarty = new Smarty();
-        $smarty->assign('titulo_genre', $this->titulo_genre);
-        $smarty->assign('genre', $genres);
-        $smarty->display('templates/ShowGenres.tpl'); 
+        $this->smarty->assign('titulo_genre', $this->titulo_genre);
+        $this->smarty->assign('genre', $genres);
+        $this->smarty->display('templates/ShowGenres.tpl'); 
     }
-    function ShowGames($games,$genre){
-        $smarty = new Smarty();
-        $smarty->assign('titulo_game', $this->titulo_game);
-        $smarty->assign('genre', $genre);
-        $smarty->assign('games', $games);
-       $smarty->display('templates/showGames.tpl'); 
+    function ShowGames($games){
+        $this->smarty->assign('titulo_game', $this->titulo_game);
+        $this->smarty->assign('games', $games);
+        $this->smarty->display('templates/showGames.tpl'); 
 
     }
     function comunity(){
-        $smarty = new Smarty();
-        $smarty->assign('titulo', "Comunidad");
-        
-        $smarty->display('templates/showcomunidad.tpl'); 
+        $this->smarty->assign('titulo', "Comunidad");
+        $this->smarty->display('templates/showcomunidad.tpl'); 
     }
-    function ShowAllAdmin($games, $genres){
-        $smarty = new Smarty();
-        $smarty->assign('titulo', "Tu nombre");
-        $smarty->assign('titulo_genre', $this->titulo_genre);
-        $smarty->assign('titulo_game', $this->titulo_game);
-        $smarty->assign('genre', $genres);
-        $smarty->assign('games', $games);
-        $smarty->display('templates/ShowAllAdmin.tpl'); 
+    function ShowAllUser($games, $genres){
+        $this->smarty->assign('titulo_genre', $this->titulo_genre);
+        $this->smarty->assign('titulo_game', $this->titulo_game);
+        $userAdmin = $this->authHelper->isAdmin();
+        $this->smarty->assign('admin', $userAdmin);
+        $this->smarty->assign('genre', $genres);
+        $this->smarty->assign('games', $games);
+        $this->smarty->display('templates/ShowAllUser.tpl'); 
     }
     
     function ShowJuegosEspecifico($games,$genre){
-        $smarty = new Smarty();
-
-        $smarty->assign('games', $games);
-        
-        $smarty->assign('titulo', $genre->name);
-        $smarty->assign('descripcion', $genre->description);
-        $smarty->display('templates/gameEspecifico.tpl'); 
+        $this->smarty->assign('games', $games);
+        $this->smarty->assign('titulo', $genre->name);
+        $this->smarty->assign('descripcion', $genre->description);
+        $this->smarty->display('templates/gameEspecifico.tpl'); 
     }
 
     function detalleJuego($game,$genre){
-        
-        $smarty = new Smarty();
-        $smarty->assign('game', $game);
-        $smarty->assign('genre', $genre);
-        $smarty->display('templates/detalleJuego.tpl'); 
+        $this->smarty->assign('game', $game);
+        $this->smarty->assign('genre', $genre);
+        $admin = $this->authHelper->isAdmin();
+        $user = $this->authHelper->getLogged();
+        $this->smarty->assign('user', $user);     
+        $this->smarty->assign('admin', $admin);
+        $this->smarty->display('templates/detalleJuego.tpl'); 
     }
 
     
     function mostrarEditar($game,$genre){
-        $smarty = new Smarty();
-        $smarty->assign('game', $game);
-        $smarty->assign('genre', $genre);
-        $smarty->display('templates/edit.tpl'); 
+        $this->smarty = new Smarty();
+        $this->smarty->assign('game', $game);
+        $userAdmin = $this->authHelper->isAdmin();
+        $this->smarty->assign('admin', $userAdmin);
+        $this->smarty->assign('genre', $genre);
+        $this->smarty->display('templates/edit.tpl'); 
        
     }
     function mostrarEditarGenre($genre){
-        $smarty = new Smarty();
-        $smarty->assign('genre', $genre);
-        $smarty->display('templates/editGenre.tpl'); 
+        $this->smarty = new Smarty();
+        $this->smarty->assign('genre', $genre);
+        $this->smarty->display('templates/editGenre.tpl'); 
        
     }
 

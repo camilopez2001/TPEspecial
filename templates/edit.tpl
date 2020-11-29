@@ -1,7 +1,7 @@
 
 {include file="header.tpl"}
  <div class="container">
-                <form action="modificar" method="post">
+                <form action="modificar" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="hidden" id="game_id" name="input_id" value="{$game->id}">
                     </div>
@@ -41,7 +41,13 @@
                             </select>
                         </label>
                     </div>
-                    
+                    {if $admin}
+                    <div>
+                        <label for="image">Inserte imagen</label>
+                        <input type="file" name="input_image" id="imageUpload">
+                        <input type="hidden" name="input_img" value="{$game->image}">
+                    </div>  
+                    {/if} 
                     <button type="submit" class="btn btn-primary" >Modificar</button>
                 </form>
     </div>
