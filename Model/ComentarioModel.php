@@ -7,11 +7,6 @@ class ComentarioModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_game;charset=utf8', 'root', '');
     }
     
-    /*function GetComentarios(){
-        $sentencia = $this->db->prepare("SELECT * FROM comentarios");
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
-    }*/
     function GetComentariosJuego($game_id){
         $sentencia = $this->db->prepare("SELECT comentarios.*, game.id AS game_Id FROM comentarios JOIN game ON comentarios.id_juego = game.id WHERE game.id=?"  );
         $sentencia->execute([$game_id]);

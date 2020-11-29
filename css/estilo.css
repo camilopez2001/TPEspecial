@@ -1,8 +1,8 @@
 
 body{
     background: linear-gradient(to right, #23074d, #cc5333);
-   }
-   .nav-bk2{
+}
+.nav-bk2{
  
     background: #23074d; 
      
@@ -64,7 +64,7 @@ h5{
 } 
 .btnColor4{
     background-image: linear-gradient(to left,#C4E538,#009432,#C4E538);
-  } 
+}
 .botonEstilo:hover{
   background-position: right;
 }
@@ -81,22 +81,6 @@ h5{
   width: 250px;
   height: 250px;
 }
-/*ul {
-  vertical-align: middle;
-  display: flex;
-  padding: 0;
-  text-align: ;
-}
-ul li {
-  display: flex;
-  background-color: #d4b3b3;
-  border: 0.1em solid black;
-}
-text-decoration: none;
-  padding: 3% 0%;
-  width: 100%;
-  font-size: 1.1em;
-*/
 ul li a{
   color: rgb(14, 37, 36);
 }

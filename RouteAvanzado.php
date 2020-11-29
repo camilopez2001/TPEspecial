@@ -20,12 +20,19 @@
     //Comunidad
     $r->addRoute("Comunidad", "GET", "Controller", "Comunidad");
     //ABM DE JUEGOS
+    $r->addRoute("insert", "POST", "Controller", "InsertGame"); // AMBOS USAN OTROSMODELS
+    $r->addRoute("edit/:ID", "GET", "Controller", "EditGame");  // PARA REALIZARESTAS ACCIONES
     $r->addRoute("Juegos", "GET", "GameController", "Games");
-    $r->addRoute("insert", "POST", "GameController", "InsertGame");
     $r->addRoute("delete/:ID", "GET", "GameController", "DeleteGame");
-    $r->addRoute("edit/:ID", "GET", "Controller", "EditGame");
     $r->addRoute("modificar", "POST", "GameController", "Modificar");
-    $r->addRoute("deleteImg/:ID", "GET", "GameController", "DeleteImg");
+    
+    //$r->addRoute("deleteImg/:ID", "GET", "GameController", "DeleteImg");
+    
+    
+    $r->addRoute("imagenes/:ID", "GET", "ImagesController", "GetImages");
+    $r->addRoute("deleteImg/:ID", "GET", "ImagesController", "DeleteImg");
+    $r->addRoute("insertImg", "POST", "ImagesController", "InsertImgForm");
+    $r->addRoute("editImg", "POST", "ImagesController", "Modificar");
     
     //Juegos de un genero
     $r->addRoute("generoEspecifico/:ID", "GET", "Controller", "generoEspecifico");

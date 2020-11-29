@@ -9,9 +9,15 @@
                 {if $game->precio le 0}
                     <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >Gratis</span> <button type="button" class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
                     <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></button></li>
+                    {if $admin}
+                        <button type="button" class="botonEstilo btnColor4"><a href="imagenes/{$game->id}">Imagenes</a></button>
+                    {/if}
                 {else}
                     <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >${$game->precio}</span> <button type="button"  class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
-                    <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></li>    
+                    <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></li>
+                    {if $admin}
+                        <button type="button" class="botonEstilo btnColor4"><a href="imagenes/{$game->id}">Imagenes</a></button></li>
+                    {/if}  
                 {/if}
             {/foreach}
           
@@ -55,7 +61,7 @@
                     {if $admin}
                         <div>
                             <label for="image">Inserte imagen</label>
-                            <input type="file" name="input_name" id="imageToUpload">
+                               <input type="file" id="imagenes" name="imagenes[]" multiple>
                         </div>
                     {/if}
                     

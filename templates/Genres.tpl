@@ -1,4 +1,4 @@
-<!-- MUESTRA LOS GENEROS SIN BOTONES -->
+
 <h1>{$titulo_genre}</h1>
 <div class="container">
 

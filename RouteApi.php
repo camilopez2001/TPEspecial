@@ -10,7 +10,5 @@ $r->addRoute("comentarios/:ID", "GET", "ApiComentariosController", "getComentari
 $r->addRoute("comentario/:ID", "DELETE", "ApiComentariosController", "DeleteComentario");
 
 
-
-
 //run
 $r->route($_GET['resource'], $_SERVER['REQUEST_METHOD']); 

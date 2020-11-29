@@ -1,10 +1,15 @@
 <?php
 
+
+require_once "./Model/ImagesModel.php";
+
 class GameModel{
 
     private $db;
+    private $modelImg;
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_game;charset=utf8', 'root', '');
+        $this->model = new ImagesModel();
     }
     
     function GetGames(){
@@ -33,32 +38,17 @@ class GameModel{
     function InsertGame($title,$precio,$version,$memoria,$genre){
         $sentencia = $this->db->prepare("INSERT INTO game(title, precio,version,memoria,id_genre) VALUES(?,?,?,?,?)");
         $sentencia->execute(array($title,$precio,$version,$memoria,$genre));
-    }
-    function InsertGameImage($title,$precio,$version,$memoria,$genre,$img){
-        $sentencia = $this->db->prepare("INSERT INTO game(title, precio,version,memoria,id_genre,image) VALUES(?,?,?,?,?,?)");
-        $sentencia->execute(array($title,$precio,$version,$memoria,$genre,$img));
+        return $this->db->lastInsertId();
     }
 
-     function DeleteGame($game_id){
+    function DeleteGame($game_id){
         $sentencia = $this->db->prepare("DELETE FROM game WHERE id=?");
         $sentencia->execute(array($game_id));
-    }
-    
-    function DeleteImg($id){
-        $sentencia = $this->db->prepare("UPDATE game SET image = null WHERE id=?");
-        $sentencia->execute(array($id));
     }
     function EditGame($game_id,$title,$precio,$version,$memoria,$genre){
        $sentencia = $this->db->prepare("UPDATE game SET title=?, precio=?,version=?,memoria=?,id_genre=?  WHERE id=?");
        $sentencia->execute(array($title,$precio,$version,$memoria,$genre,$game_id));
     }
     
-    function EditGameImg($game_id,$title,$precio,$version,$memoria,$genre,$img){
-        $sentencia = $this->db->prepare("UPDATE game SET title=?, precio=?,version=?,memoria=?,id_genre=?,image=?  WHERE id=?");
-        $sentencia->execute(array($title,$precio,$version,$memoria,$genre,$img,$game_id));
-     }
-    
-   // unlink('path/to/file.jpg')
     
 }
-?>

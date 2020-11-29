@@ -34,6 +34,13 @@ class View{
         $this->smarty->display('templates/showGames.tpl'); 
 
     }
+    function ShowImages($imagenes,$id_game){
+        $this->smarty->assign('titulo', "Imagenes");
+        $this->smarty->assign('id_game', $id_game);
+        $this->smarty->assign('imagenes', $imagenes);
+        $this->smarty->display('templates/ShowImg.tpl'); 
+
+    }
     function comunity(){
         $this->smarty->assign('titulo', "Comunidad");
         $this->smarty->display('templates/showcomunidad.tpl'); 
@@ -55,11 +62,12 @@ class View{
         $this->smarty->display('templates/gameEspecifico.tpl'); 
     }
 
-    function detalleJuego($game,$genre){
+    function detalleJuego($game,$genre, $imagenes){
         $this->smarty->assign('game', $game);
         $this->smarty->assign('genre', $genre);
         $admin = $this->authHelper->isAdmin();
         $user = $this->authHelper->getLogged();
+        $this->smarty->assign('imagenes', $imagenes);   
         $this->smarty->assign('user', $user);     
         $this->smarty->assign('admin', $admin);
         $this->smarty->display('templates/detalleJuego.tpl'); 
@@ -69,8 +77,6 @@ class View{
     function mostrarEditar($game,$genre){
         $this->smarty = new Smarty();
         $this->smarty->assign('game', $game);
-        $userAdmin = $this->authHelper->isAdmin();
-        $this->smarty->assign('admin', $userAdmin);
         $this->smarty->assign('genre', $genre);
         $this->smarty->display('templates/edit.tpl'); 
        

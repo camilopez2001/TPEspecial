@@ -5,6 +5,8 @@ require_once "./Model/GameModel.php";
 require_once "./Model/GenreModel.php";
 require_once "./Model/UserModel.php";
 require_once "./Model/ComentarioModel.php";
+require_once "./Model/ImagesModel.php";
+require_once "ImagesController.php";
 require_once "./helpers/auth.helper.php";
 
 class Controller{
@@ -14,6 +16,8 @@ class Controller{
     private $modelGenre;
     private $modelUser;
     private $modelComents;
+    private $modelImages;
+    private $ControllerImages;
     private $authHelper;
 
     function __construct(){
@@ -22,6 +26,8 @@ class Controller{
         $this->modelGenre = new GenreModel();
         $this->modelUser = new UserModel();
         $this->modelComents = new ComentarioModel();
+        $this->modelImages = new ImagesModel();
+        $this->ControllerImages = new ImagesController();
         $this->authHelper = new AuthHelper();
     }
 
@@ -37,12 +43,25 @@ class Controller{
         $this->view->mostrarEditar($game,$genre);
     }
     
+    function InsertGame(){
+        $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+        if($this->ControllerImages->sonJPG($_FILES['imagenes']['type'])) {
+            $id = $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
+            $this->ControllerImages->InsertImgInicio( $id, $rutaTempImagenes);
+        }
+        else
+          $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
+        $this->view->ShowUserLoc();
+    }
+
+
     function DetalleJuego($params = null){
         $game_id = $params[':ID'];
         $game = $this->modelGame->GetGame($game_id);
+        $imagenes = $this->modelImages->getGameimg($game_id);
         $genre_id = $game->id_genre;
         $genre = $this->modelGenre->GetGenre($genre_id);
-        $this->view->DetalleJuego($game,$genre);
+        $this->view->DetalleJuego($game,$genre, $imagenes);
     }
 
     function generoEspecifico($params = null){
