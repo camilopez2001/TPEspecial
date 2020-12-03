@@ -68,13 +68,9 @@ class UserController{
         $this->view->ShowLogin();
     }
     function ListaUsuarios(){
-        $userSession = $this->model->GetUserID( $this->authHelper->getLogged());
         $users = $this->model->GetUsers();
-        $this->view->ShowUsers($users,$userSession);
-        
-        
+        $this->view->ShowUsers($users,$this->authHelper->getLogged());
     }
-    // 
     function EditUser($params = null){
         $id = $params[':ID'];
         $user = $this->model->GetUserID($id);
@@ -89,6 +85,6 @@ class UserController{
     function DeleteUser($params = null){
         $id = $params[':ID'];
         $this->model->DeleteUser($id);
-        $this-> ListaUsuarios();
+        $this->ListaUsuarios();
     }
 }

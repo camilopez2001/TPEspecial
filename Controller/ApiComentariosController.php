@@ -27,7 +27,7 @@ class ApiComentariosController extends ApiController{
     public function InsertComentario($params = null){
         $body = $this->getData();
         $comentario = $this->model->InsertComentario($body->comentario,$body->valoracion,$body->id_juego,$body->id_usuario_fk); 
-        if (!empty($comentario)) // verifica si la tarea existe
+        if (!empty($comentario))
             $this->view->response( $this->model->GetComentario($comentario), 201);
         else
             $this->view->response("El comentario no se pudo insertar", 404);

@@ -8,7 +8,7 @@ class AuthHelper {
         session_start();
         $_SESSION['ID_USER'] = $user->id;
         $_SESSION['EMAIL'] = $user->email;
-        $_SESSION["ADMIN"] = $user->admin;
+        $_SESSION['ADMIN'] = $user->admin;
         $_SESSION['LAST_ACTIVITY'] = time();
     }
     public function logout() {
@@ -35,21 +35,19 @@ class AuthHelper {
     public function getLogged() {
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-            if(!isset($_SESSION['ID_USER']))
-            return null;
-                
+            if(isset($_SESSION['ID_USER'])){
+                if($_SESSION['ID_USER'])
+                    return $_SESSION['ID_USER'];
+            }        
             else
-            return $_SESSION['ID_USER'];
-            
+                return null;
     }
     public function isAdmin() {
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-            if(!isset($_SESSION['ADMIN']))
-            return null;
-                
-            else
-            return $_SESSION['ADMIN'];
-     
+            if(isset($_SESSION['ADMIN'])&&$_SESSION['ADMIN']==1){
+               return $_SESSION['ADMIN'];
+            }
+            else return null;
     }
 }

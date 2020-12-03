@@ -31,7 +31,7 @@ class View{
     function ShowGames($games){
         $this->smarty->assign('titulo_game', $this->titulo_game);
         $this->smarty->assign('games', $games);
-        $this->smarty->display('templates/showGames.tpl'); 
+        $this->smarty->display('templates/ShowGames.tpl'); 
 
     }
     function ShowImages($imagenes,$id_game){
@@ -48,8 +48,7 @@ class View{
     function ShowAllUser($games, $genres){
         $this->smarty->assign('titulo_genre', $this->titulo_genre);
         $this->smarty->assign('titulo_game', $this->titulo_game);
-        $userAdmin = $this->authHelper->isAdmin();
-        $this->smarty->assign('admin', $userAdmin);
+        $this->smarty->assign('admin', $this->authHelper->isAdmin());
         $this->smarty->assign('genre', $genres);
         $this->smarty->assign('games', $games);
         $this->smarty->display('templates/ShowAllUser.tpl'); 
@@ -65,11 +64,9 @@ class View{
     function detalleJuego($game,$genre, $imagenes){
         $this->smarty->assign('game', $game);
         $this->smarty->assign('genre', $genre);
-        $admin = $this->authHelper->isAdmin();
-        $user = $this->authHelper->getLogged();
-        $this->smarty->assign('imagenes', $imagenes);   
-        $this->smarty->assign('user', $user);     
-        $this->smarty->assign('admin', $admin);
+        $this->smarty->assign('imagenes', $imagenes);
+        $this->smarty->assign('admin',$this->authHelper->isAdmin());
+        $this->smarty->assign('user', $this->authHelper->getLogged());
         $this->smarty->display('templates/detalleJuego.tpl'); 
     }
 

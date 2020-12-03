@@ -6,19 +6,19 @@
         <ul class="list-group">
 
             {foreach from=$games item=game}
-                {if $game->precio le 0}
-                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >Gratis</span> <button type="button" class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
-                    <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></button></li>
+               
+                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a>
+                    {if $game->precio le 0}
+                        <span class="badge badge-primary badge-pill">Gratis</span>
+                    {else}
+                        <span class="badge badge-primary badge-pill" >${$game->precio}</span> 
+                    {/if} 
+                    <button type="button" class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button> <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></button>
                     {if $admin}
-                        <button type="button" class="botonEstilo btnColor4"><a href="imagenes/{$game->id}">Imagenes</a></button>
+                      <button type="button" class="botonEstilo btnColor4"><a href="imagenes/{$game->id}">Imagenes</a></button></li>
+                    {else}
+                        </li>
                     {/if}
-                {else}
-                    <li class="list-group-item "><a href="detalleJuego/{$game->id}">{$game->title}</a><span class="badge badge-primary badge-pill" >${$game->precio}</span> <button type="button"  class="btn btn-danger"><a href="delete/{$game->id}">Borrar</a></button>
-                    <button type="button" class="btn btn-warning"><a href="edit/{$game->id}">Editar</a></li>
-                    {if $admin}
-                        <button type="button" class="botonEstilo btnColor4"><a href="imagenes/{$game->id}">Imagenes</a></button></li>
-                    {/if}  
-                {/if}
             {/foreach}
           
         </ul>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio</label>
-                        <input type="number" class="form-control" id="precio" name="input_precio">
+                        <input type="number" class="form-control" id="precio" min="0" pattern="^[0-9]+" name="input_precio">
                     </div>
                     <div>
                         <label for="opciones">Version
@@ -47,7 +47,7 @@
                  
                     <div class="form-group">
                         <label for="memoria">Memoria del juego</label>
-                        <input type="number" class="form-control" id="memoria" name="input_memoria">
+                        <input type="number" class="form-control" id="memoria" min="0" pattern="^[0-9]+" name="input_memoria">
                     </div>
                     <div>
                         <label for="opciones">Genero

@@ -8,7 +8,7 @@ class ComentarioModel{
     }
     
     function GetComentariosJuego($game_id){
-        $sentencia = $this->db->prepare("SELECT comentarios.*, game.id AS game_Id FROM comentarios JOIN game ON comentarios.id_juego = game.id WHERE game.id=?"  );
+        $sentencia = $this->db->prepare("SELECT *, comentarios.id as IDcomentario FROM comentarios JOIN usuario ON comentarios.id_usuario_fk = usuario.id WHERE comentarios.id_juego=?");
         $sentencia->execute([$game_id]);
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }

@@ -6,10 +6,8 @@ require_once "./Model/ImagesModel.php";
 class GameModel{
 
     private $db;
-    private $modelImg;
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_game;charset=utf8', 'root', '');
-        $this->model = new ImagesModel();
     }
     
     function GetGames(){
@@ -17,6 +15,7 @@ class GameModel{
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
+    
     function GetGame($id){
         $sentencia = $this->db->prepare("SELECT * FROM game WHERE id=?");
         $sentencia->execute(array($id));
@@ -25,7 +24,7 @@ class GameModel{
 
     function GetGamesFree(){
         $sentencia = $this->db->prepare("SELECT * FROM game WHERE precio = 0");
-        $sentencia->execute(array());
+        $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 

@@ -17,12 +17,15 @@ class GameController{
         $games = $this->model->GetGames();
         $this->view->ShowGames($games);
     }
+    
     function DeleteGame($params = null){
         $game_id = $params[':ID'];
-        $this->model->DeleteGame($game_id);
-        $this->view->ShowUserLoc();
+        if(isset($game_id)){
+            $this->model->DeleteGame($game_id);
+            $this->view->ShowUserLoc();
+        }
+        
     }
-    
     
     function Modificar(){
         $this->model->EditGame($_POST['input_id'],$_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);

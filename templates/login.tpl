@@ -5,7 +5,7 @@
     <form action="verificarUser" method="post">
             <div class="form-group">
                 <label for="user">Usuario</label>
-                <input class="form-control" id="pass" name="input_user" >
+                <input class="form-control" id="user" name="input_user" >
             </div>
             <div class="form-group">
                 <label for="pass">Contraseña</label>

@@ -44,14 +44,16 @@ class Controller{
     }
     
     function InsertGame(){
-        $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
-        if($this->ControllerImages->sonJPG($_FILES['imagenes']['type'])) {
-            $id = $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
-            $this->ControllerImages->InsertImgInicio( $id, $rutaTempImagenes);
+        if(isset($_FILES['imagenes']['tmp_name'])){
+            $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+            if($this->ControllerImages->sonJPG($_FILES['imagenes']['type'])) {
+                $id = $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
+                $this->ControllerImages->InsertImgInicio( $id, $rutaTempImagenes);
+            }
+            else
+              $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
+            $this->view->ShowUserLoc();
         }
-        else
-          $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
-        $this->view->ShowUserLoc();
     }
 
 

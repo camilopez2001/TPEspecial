@@ -25,10 +25,8 @@
     $r->addRoute("Juegos", "GET", "GameController", "Games");
     $r->addRoute("delete/:ID", "GET", "GameController", "DeleteGame");
     $r->addRoute("modificar", "POST", "GameController", "Modificar");
-    
-    //$r->addRoute("deleteImg/:ID", "GET", "GameController", "DeleteImg");
-    
-    
+
+    //IMAGEN
     $r->addRoute("imagenes/:ID", "GET", "ImagesController", "GetImages");
     $r->addRoute("deleteImg/:ID", "GET", "ImagesController", "DeleteImg");
     $r->addRoute("insertImg", "POST", "ImagesController", "InsertImgForm");
