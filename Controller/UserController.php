@@ -49,9 +49,9 @@ class UserController{
     function VerificarUser(){
         $email = $_POST["input_user"];
         $pass = $_POST["input_pass"];
-        if(isset($email)){ 
+        if(!empty($email)){ 
             $usuarioFromDB = $this->model->GetUser($email);
-            if(isset($usuarioFromDB) && $usuarioFromDB ){ 
+            if(!empty($usuarioFromDB) && $usuarioFromDB ){ 
                 if (password_verify($pass, $usuarioFromDB->password)){
                     $this->authHelper->login($usuarioFromDB);         
                     header("Location: ".BASE_URL."Comunidad");
@@ -61,6 +61,9 @@ class UserController{
             }else{
                 $this->view->ShowLogin("El usuario no existe");
             }
+        }
+        else{
+            $this->view->ShowLogin("No ingreso email");
         }
     }
     function Logout(){

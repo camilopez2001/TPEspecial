@@ -44,7 +44,7 @@ class Controller{
     }
     
     function InsertGame(){
-        if(isset($_FILES['imagenes']['tmp_name'])){
+        if(!empty($_POST['input_title'])){
             $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
             if($this->ControllerImages->sonJPG($_FILES['imagenes']['type'])) {
                 $id = $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
@@ -54,6 +54,7 @@ class Controller{
               $this->modelGame->InsertGame($_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
             $this->view->ShowUserLoc();
         }
+        else  $this->view->ShowUserLoc();
     }
 
 

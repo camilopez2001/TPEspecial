@@ -28,7 +28,9 @@ class GameController{
     }
     
     function Modificar(){
-        $this->model->EditGame($_POST['input_id'],$_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
+        if(!empty($_POST['input_title'])){
+            $this->model->EditGame($_POST['input_id'],$_POST['input_title'],$_POST['input_precio'],$_POST['input_version'],$_POST['input_memoria'],$_POST['input_genre']);
+        }
         $this->view->ShowUserLoc();
     }
 }

@@ -15,7 +15,9 @@ class GenreController{
     
 
     function InsertGenre(){
-        $this->modelGenre->InsertGenre($_POST['input_name'],$_POST['input_description']);
+        if(isset($_POST['input_name'])){
+            $this->modelGenre->InsertGenre($_POST['input_name'],$_POST['input_description']);
+        }
         $this->view->ShowUserLoc();
     }
     function DeleteGenre($params = null){
@@ -29,7 +31,9 @@ class GenreController{
         $this->view->mostrarEditarGenre($genre);
     }
     function ModificarGenre(){
-        $this->modelGenre->EditGenre($_POST['genre_id'],$_POST['input_name'],$_POST['input_description']);
+        if(isset($_POST['input_name'])){
+            $this->modelGenre->EditGenre($_POST['genre_id'],$_POST['input_name'],$_POST['input_description']);
+        }
         $this->view->ShowUserLoc();
     }
     
